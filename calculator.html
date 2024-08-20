@@ -1,0 +1,100 @@
+<html >
+<head>
+  
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #calculator {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgb(29, 28, 28);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    input[type="button"] {
+      width: 48px;
+      height: 48px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="calculator">
+    <input type="text" id="display" readonly>
+
+    <br>
+
+    <input type="button" value="1" onclick="appendNumber('1')">
+    <input type="button" value="2" onclick="appendNumber('2')">
+    <input type="button" value="3" onclick="appendNumber('3')">
+    <input type="button" value="/" onclick="appendOperator('/')">
+
+    <br>
+
+    <input type="button" value="4" onclick="appendNumber('4')">
+    <input type="button" value="5" onclick="appendNumber('5')">
+    <input type="button" value="6" onclick="appendNumber('6')">
+    <input type="button" value="-" onclick="appendOperator('-')">
+
+    <br>
+
+    <input type="button" value="7" onclick="appendNumber('7')">
+    <input type="button" value="8" onclick="appendNumber('8')">
+    <input type="button" value="9" onclick="appendNumber('9')">
+    <input type="button" value="+" onclick="appendOperator('+')">
+
+    <br>
+
+    <input type="button" value="0" onclick="appendNumber('0')">
+    <input type="button" value="." onclick="appendDecimal()">
+    <input type="button" value="=" onclick="calculate()">
+    <input type="button" value="C" onclick="clearDisplay()">
+  </div>
+
+  <script>
+    function appendNumber(num) {
+      document.getElementById('display').value += num;
+    }
+
+    function appendOperator(operator) {
+      document.getElementById('display').value += operator;
+    }
+
+    function appendDecimal() {
+      let displayValue = document.getElementById('display').value;
+      if (displayValue.indexOf('.') === -1) {
+        document.getElementById('display').value += '.';
+      }
+    }
+
+    function calculate() {
+      try {
+        document.getElementById('display').value = eval(document.getElementById('display').value);
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+  </script>
+
+</body>
+</html>
